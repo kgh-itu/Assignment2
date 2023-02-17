@@ -26,6 +26,17 @@ def get_data():
     return X, Y
 
 
+def get_forecast_data():
+    client = InfluxDBClient(host='influxus.itu.dk', port='8086', username='lsda', password='icanonlyread')
+    client.switch_database('orkney')
+    forecasts = client.query("SELECT * FROM MetForecasts where time > now()")
+    for_df = get_df(forecasts)
+    newest_source_time = for_df["Source_time"].max()
+    newest_forecasts = for_df.loc[for_df["Source_time"] == newest_source_time].copy()
+
+    return newest_forecasts
+
+
 def get_df(results):
     values = results.raw['series'][0]['values']
     columns = results.raw['series'][0]['columns']

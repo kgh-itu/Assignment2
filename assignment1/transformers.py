@@ -16,7 +16,7 @@ class NormalizeSpeed(BaseEstimator, TransformerMixin):
         return X
 
 
-class SelectRelevantColumns(BaseEstimator, TransformerMixin):
+class SelectSpeedDirectionCols(BaseEstimator, TransformerMixin):
     def __init__(self):
         return
 
@@ -24,7 +24,7 @@ class SelectRelevantColumns(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X, y=None):
-        X = X.drop(columns=["ANM", "Non-ANM", "time"])
+        X = X[["Direction", "Speed"]]
         return X
 
 
