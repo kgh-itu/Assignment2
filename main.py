@@ -16,7 +16,7 @@ import mlflow
 import shutil
 from datetime import datetime
 
-from get_data import get_data, get_forecast_data
+from get_data import get_data
 from transformers import DropNA, SelectSpeedDirectionCols, DirectionToVector, NormalizeSpeed
 import mlflow
 
