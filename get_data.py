@@ -1,8 +1,6 @@
 import pandas as pd
 from influxdb import InfluxDBClient
 
-from sklearn.model_selection import train_test_split
-
 
 def get_data():
     client = InfluxDBClient(host='influxus.itu.dk', port='8086', username='lsda', password='icanonlyread')
@@ -17,8 +15,7 @@ def get_data():
     gen_df = get_df(generation)
     wind_df = get_df(wind)
 
-    merged = pd.merge_asof(gen_df, wind_df, direction="nearest",
-                           on="time")
+    merged = pd.merge_asof(gen_df, wind_df, direction="nearest", on="time")
 
     Y = merged["Total"]
     X = merged.drop(columns=["Total"])
