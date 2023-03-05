@@ -89,7 +89,8 @@ def _create_new_model_dict(model_name, final_score):
 def _save_model_to_disk(pipeline):
     mlflow.sklearn.save_model(
         pipeline,
-        path="best_model")
+        path="best_model",
+        conda_env="conda.yml")
 
 
 def _read_best_model_from_disk():
