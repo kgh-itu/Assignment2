@@ -90,7 +90,7 @@ def _save_model_to_disk(pipeline):
     mlflow.sklearn.save_model(
         pipeline,
         path="best_model",
-        conda_env="conda.yml")
+        conda_env="conda.yaml")
 
 
 def _read_best_model_from_disk():
